@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"solidity.packageDefaultDependenciesContractsDirectory": "",
+		"solidity.packageDefaultDependenciesDirectory": "node_modules",
+		"solidity.compileUsingRemoteVersion": "v0.8.4+commit.c7e474f2",
+		"git.ignoreLimitWarning": true,
+		"cSpell.words": [
+			"emeted",
+			"ethersproject",
+			"nomiclabs"
+		],
+	}
+	
+}
