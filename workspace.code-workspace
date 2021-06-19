@@ -7,9 +7,10 @@
 	"settings": {
 		"solidity.packageDefaultDependenciesContractsDirectory": "",
 		"solidity.packageDefaultDependenciesDirectory": "node_modules",
-		"solidity.compileUsingRemoteVersion": "v0.8.4+commit.c7e474f2",
+		"solidity.compileUsingRemoteVersion": "0.5.15",
 		"git.ignoreLimitWarning": true,
 		"cSpell.words": [
+			"crowdsale",
 			"emeted",
 			"ethersproject",
 			"nomiclabs"

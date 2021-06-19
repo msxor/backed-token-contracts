@@ -13,7 +13,7 @@ task("accounts", "Prints the list of accounts", async (args, hre: HardhatRuntime
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.8.4",
+    version: "0.5.15",
     settings: {
       optimizer: {
         enabled: true,
@@ -30,6 +30,14 @@ const config: HardhatUserConfig = {
       url: `https://rinkeby.infura.io/v3/bc4d11088848481a972333f5161120fe`,
       accounts:   {
         mnemonic: `absurd anchor bullet lobster unable exclude weird lucky bar soda dumb first`
+      },
+      gasPrice: 2000000000,
+    },
+    mainnet: {
+      chainId: 1,
+      url: `https://mainnet.infura.io/v3/bc4d11088848481a972333f5161120fe`,
+      accounts:   {
+        mnemonic: ``
       },
       gasPrice: 2000000000,
     }
