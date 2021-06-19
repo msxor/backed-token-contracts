@@ -6,6 +6,7 @@
   "scripts": {
     "test": "npx hardhat test",
     "node": "npx hardhat node",
+    "flatten": "npx hardhat flatten",
     "deploy": "npx hardhat run scripts/deploy-script.ts --network localhost",
     "deploy-rinkeby": "npx hardhat run scripts/deploy-script.ts --network rinkeby",
     "unlock-rinkeby": "npx hardhat run scripts/unlock-script.ts --network rinkeby",

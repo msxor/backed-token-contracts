@@ -69,18 +69,17 @@ describe('crowdsale', () => {
         ).to.be.reverted;
     });
 
-    //TODO:wait confirmation
-    it("User buys max twice -> success???", async () => {
+    it("User buys max twice -> fail", async () => {
         await user.sendTransaction({
             to: crowdsale.address,
             value: ethers.utils.parseEther("5.0")
         });
-        await user.sendTransaction({
-            to: crowdsale.address,
-            value: ethers.utils.parseEther("5.0")
-        });
-        var balance = await token.balanceOf(user.address);
-        expect(balance).to.be.equal(ethers.BigNumber.from(rate).mul(base).mul(5).mul(2));
+        await expect(
+            user.sendTransaction({
+                to: crowdsale.address,
+                value: ethers.utils.parseEther("5.0")
+            })
+        ).to.be.reverted;
     });
 
     it("User transfers while token is locked -> fail", async () => {
@@ -92,6 +91,20 @@ describe('crowdsale', () => {
         await expect(
             token.connect(user).transfer(user2.address, 1)
         ).to.be.reverted;
+    });
+
+    it("User buys twice below max -> success", async () => {
+        await user.sendTransaction({
+            to: crowdsale.address,
+            value: ethers.utils.parseEther("1.0")
+        });
+        await user.sendTransaction({
+            to: crowdsale.address,
+            value: ethers.utils.parseEther("1.0")
+        });
+
+        var balance = await token.balanceOf(user.address);
+        expect(balance).to.be.equal(ethers.BigNumber.from(2 * rate).mul(base));
     });
 
     it("User transfers after token is unlocked -> success", async () => {
@@ -107,7 +120,7 @@ describe('crowdsale', () => {
         expect(balance).to.be.equal(1);
     });
 
-    it("User(not owner) unlocks -> fail", async () => {
+    it("User(not owner) unlocks the token -> fail", async () => {
         await expect(
             token.connect(user).unlock()
         ).to.be.reverted;
