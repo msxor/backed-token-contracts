@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"solidity.packageDefaultDependenciesContractsDirectory": "",
+		"solidity.packageDefaultDependenciesDirectory": "node_modules",
+		"solidity.compileUsingRemoteVersion": "0.5.15",
+		"git.ignoreLimitWarning": true,
+		"cSpell.words": [
+			"crowdsale",
+			"emeted",
+			"ethersproject",
+			"nomiclabs"
+		],
+	}
+	
+}
