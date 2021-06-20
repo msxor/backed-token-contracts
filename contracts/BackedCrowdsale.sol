@@ -10,7 +10,7 @@ contract BackedCrowdsale is Crowdsale, CappedCrowdsale, AllowanceCrowdsale {
     using SafeMath for uint256;
     uint256 _minAmount;
     uint256 _maxAmount;
-    mapping(address => uint256) _balances;
+    mapping(address => uint256) public totalPurchase;
 
     constructor(
         uint256 rate,
@@ -39,12 +39,12 @@ contract BackedCrowdsale is Crowdsale, CappedCrowdsale, AllowanceCrowdsale {
         view
     {
         require(
-            weiAmount.add(_balances[beneficiary]) <= _maxAmount,
+            weiAmount.add(totalPurchase[beneficiary]) <= _maxAmount,
             "BackedCrowdsale: weiAmount <= _maxAmount"
         );
 
         require(
-            weiAmount.add(_balances[beneficiary]) >= _minAmount,
+            weiAmount.add(totalPurchase[beneficiary]) >= _minAmount,
             "BackedCrowdsale: weiAmount >= _minAmount"
         );
 
@@ -62,8 +62,8 @@ contract BackedCrowdsale is Crowdsale, CappedCrowdsale, AllowanceCrowdsale {
     {
         // solhint-disable-previous-line no-empty-blocks
         super._updatePurchasingState(beneficiary, weiAmount);
-        _balances[beneficiary] = weiAmount.add(
-            _balances[beneficiary] + weiAmount
+        totalPurchase[beneficiary] = weiAmount.add(
+            totalPurchase[beneficiary] + weiAmount
         );
     }
 }
