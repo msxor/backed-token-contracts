@@ -41,6 +41,16 @@ describe('crowdsale', () => {
         expect(balance).to.be.equal(ethers.BigNumber.from(rate).mul(base));
     });
 
+    it("User buys min -> crowdsale totalPurchase increase to this amount", async () => {
+        await user.sendTransaction({
+            to: crowdsale.address,
+            value: ethers.utils.parseEther("1.0")
+        });
+
+        var totalPurchase = await crowdsale.totalPurchase(user.address)
+        expect(totalPurchase).to.be.equal(ethers.utils.parseEther("1.0"));
+    });
+
     it("User buys max -> gets tokens at rate", async () => {
         await user.sendTransaction({
             to: crowdsale.address,
