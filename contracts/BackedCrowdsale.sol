@@ -8,8 +8,8 @@ import "@openzeppelin/contracts/math/SafeMath.sol";
 
 contract BackedCrowdsale is Crowdsale, CappedCrowdsale, AllowanceCrowdsale {
     using SafeMath for uint256;
-    uint256 _minAmount;
-    uint256 _maxAmount;
+    uint256 public minAmount;
+    uint256 public maxAmount;
     mapping(address => uint256) public totalPurchase;
 
     constructor(
@@ -17,16 +17,16 @@ contract BackedCrowdsale is Crowdsale, CappedCrowdsale, AllowanceCrowdsale {
         address payable wallet,
         uint256 cap,
         IERC20 token,
-        uint256 minAmount,
-        uint256 maxAmount
+        uint256 minAmount_,
+        uint256 maxAmount_
     )
         public
         CappedCrowdsale(cap)
         AllowanceCrowdsale(wallet)
         Crowdsale(rate, wallet, token)
     {
-        _minAmount = minAmount;
-        _maxAmount = maxAmount;
+        minAmount = minAmount_;
+        maxAmount = maxAmount_;
     }
 
     /**
@@ -39,12 +39,12 @@ contract BackedCrowdsale is Crowdsale, CappedCrowdsale, AllowanceCrowdsale {
         view
     {
         require(
-            weiAmount.add(totalPurchase[beneficiary]) <= _maxAmount,
+            weiAmount.add(totalPurchase[beneficiary]) <= maxAmount,
             "BackedCrowdsale: weiAmount <= _maxAmount"
         );
 
         require(
-            weiAmount.add(totalPurchase[beneficiary]) >= _minAmount,
+            weiAmount.add(totalPurchase[beneficiary]) >= minAmount,
             "BackedCrowdsale: weiAmount >= _minAmount"
         );
 
@@ -63,7 +63,7 @@ contract BackedCrowdsale is Crowdsale, CappedCrowdsale, AllowanceCrowdsale {
         // solhint-disable-previous-line no-empty-blocks
         super._updatePurchasingState(beneficiary, weiAmount);
         totalPurchase[beneficiary] = weiAmount.add(
-            totalPurchase[beneficiary] + weiAmount
+            totalPurchase[beneficiary]
         );
     }
 }
