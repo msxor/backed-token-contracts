@@ -4,9 +4,9 @@ import { Contract, Event } from '@ethersproject/contracts';
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import { ethers } from "hardhat";
 
-let base = ethers.BigNumber.from(10).pow(18);
 let owner: SignerWithAddress;
-let cap = ethers.BigNumber.from(27803853).mul(base);
+// ((27803853M / 139000M)*(decimal) Math.Pow(10,18))
+let cap = ethers.BigNumber.from("200027719424460431654");
 let rate = 139000 ;
 let min = ethers.utils.parseEther("0.1");
 let max = ethers.utils.parseEther("0.5");
