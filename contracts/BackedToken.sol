@@ -10,7 +10,7 @@ contract BackedToken is ERC20, ERC20Detailed, Ownable {
     bool _unlocked;
     address private _owner;
 
-    constructor() public ERC20() ERC20Detailed("BACKED", "BACKED", 18) {
+    constructor() public ERC20() ERC20Detailed("BACKED", "BAKT", 18) {
         _mint(msg.sender, 100000000 * 10**18);
         _owner = msg.sender;
     }

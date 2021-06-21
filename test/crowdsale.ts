@@ -8,7 +8,7 @@ describe('crowdsale', () => {
     let owner: SignerWithAddress;
     let user: SignerWithAddress;
     let user2: SignerWithAddress;
-    let cap = ethers.BigNumber.from(16076000).mul(base);
+    let cap = ethers.BigNumber.from(200).mul(base);
     let rate = 80380;
     let min = ethers.BigNumber.from(1).mul(base);
     let max = ethers.BigNumber.from(5).mul(base);
