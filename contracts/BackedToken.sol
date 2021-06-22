@@ -8,11 +8,11 @@ import "@openzeppelin/contracts/ownership/Ownable.sol";
 contract BackedToken is ERC20, ERC20Detailed, Ownable {
     
     bool _unlocked;
-    address private _owner;
+    address private _ownerToken;
 
     constructor() public ERC20() ERC20Detailed("BACKED", "BAKT", 18) {
         _mint(msg.sender, 100000000 * 10**18);
-        _owner = msg.sender;
+        _ownerToken = msg.sender;
     }
 
     function _transfer(
@@ -20,11 +20,11 @@ contract BackedToken is ERC20, ERC20Detailed, Ownable {
         address to,
         uint256 amount
     ) internal {
-        require(_unlocked || from == _owner, "token transfer while locked");
+        require(_unlocked || from == _ownerToken, "token transfer while locked");
         super._transfer(from, to, amount);
     }
 
-    function unlock() public onlyOwner {
+    function unlock() external onlyOwner {
         _unlocked = true;
     }
 }

@@ -27,7 +27,7 @@ async function deploy() {
         max//max
     );
 
-    await token.connect(owner).approve(crowdsale.address, cap);
+    await token.connect(owner).approve(crowdsale.address, cap.mul(rate));
 
     console.log('token address:' + token.address);
     console.log('crowdsale address:' + crowdsale.address);

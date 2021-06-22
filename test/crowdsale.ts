@@ -8,7 +8,7 @@ describe('crowdsale', () => {
     let owner: SignerWithAddress;
     let user: SignerWithAddress;
     let user2: SignerWithAddress;
-    let cap = ethers.BigNumber.from(200).mul(base);
+    let cap = ethers.BigNumber.from("200027719424460431654");
     let rate = 80380;
     let min = ethers.BigNumber.from(1).mul(base);
     let max = ethers.BigNumber.from(5).mul(base);
@@ -28,7 +28,7 @@ describe('crowdsale', () => {
             max//max
         );
 
-        await token.connect(owner).approve(crowdsale.address, cap);
+        await token.connect(owner).approve(crowdsale.address, cap.mul(rate));
     });
 
     it("User buys min -> gets tokens at rate", async () => {
