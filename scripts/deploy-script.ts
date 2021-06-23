@@ -21,6 +21,7 @@ async function deploy() {
     crowdsale = await crowdsaleFactory.deploy(
         rate,//rate
         owner.address,//owner
+        '0x5e930d9025B57BA34f4cEA7De73BD54261E9ec2A',
         cap,//cap
         token.address,//erc20
         min,//min

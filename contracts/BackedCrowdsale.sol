@@ -14,6 +14,7 @@ contract BackedCrowdsale is Crowdsale, CappedCrowdsale, AllowanceCrowdsale {
 
     constructor(
         uint256 rate,
+        address tokenAddress,
         address payable wallet,
         uint256 cap,
         IERC20 token,
@@ -22,7 +23,7 @@ contract BackedCrowdsale is Crowdsale, CappedCrowdsale, AllowanceCrowdsale {
     )
         public
         CappedCrowdsale(cap)
-        AllowanceCrowdsale(wallet)
+        AllowanceCrowdsale(tokenAddress)
         Crowdsale(rate, wallet, token)
     {
         minAmount = minAmount_;
