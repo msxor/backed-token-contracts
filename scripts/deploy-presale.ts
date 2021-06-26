@@ -18,16 +18,19 @@ let crowdsale: Contract;
 async function deploy() {
     [owner] = await ethers.getSigners();
     let crowdsaleFactory = await ethers.getContractFactory("BackedCrowdsale");
+    var tokenAddress = '0x7a6e023cD1a6b792Ef8428e7276f4e09F551fF28';
     crowdsale = await crowdsaleFactory.deploy(
         rate,//rate
         owner.address,//owner
         '0x5e930d9025B57BA34f4cEA7De73BD54261E9ec2A',
         cap,//cap
-        '0x7a6e023cD1a6b792Ef8428e7276f4e09F551fF28',//erc20
+        tokenAddress,//erc20
         min,//min
         max//max
     );
 
+    [owner] = await ethers.getSigners();
+    var token = await ethers.getContractAt("BackedToken", tokenAddress);
     await token.connect(owner).approve(crowdsale.address, cap.mul(rate));
 
     console.log('crowdsale address:' + crowdsale.address);
