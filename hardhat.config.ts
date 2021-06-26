@@ -1,5 +1,6 @@
 import { task } from 'hardhat/config';
 import "@nomiclabs/hardhat-waffle";
+import "@nomiclabs/hardhat-etherscan";
 
 import { HardhatRuntimeEnvironment, HardhatUserConfig } from 'hardhat/types';
 
@@ -41,6 +42,9 @@ const config: HardhatUserConfig = {
       },
       gasPrice: 2000000000,
     }
+  },
+  etherscan: {
+    apiKey: "FRCI5HAB5CFXRX88IYAQKXM7CPBPH52YWM"
   }
 }
 
