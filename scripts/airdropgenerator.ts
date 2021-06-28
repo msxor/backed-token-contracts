@@ -162,7 +162,7 @@ var blackListTx = '0xad3caa4b65887811bfee78b43fd228e92c6609ee0facb4efe8e73019e5a
 
 async function deploy() {
     [owner] = await ethers.getSigners();
-    var tokenAddress = '0x7a6e023cD1a6b792Ef8428e7276f4e09F551fF28';
+    var tokenAddress = '0x3C4f906A81553a944736a175A55FeE19Cb5dF61B';
     var token = await ethers.getContractAt("BackedToken", tokenAddress);
     var temp = '0x00262bde03d4dc1a2a990fa09782ea433a8e5aa5,69500,No'+
     '0x02d7bd2cb46d139d830276a1dde94b412d51293a,69500,No'+
