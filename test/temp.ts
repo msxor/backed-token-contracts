@@ -2,10 +2,13 @@ console.log('start deployment')
 
 import { Contract, Event } from '@ethersproject/contracts';
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
-import { ethers } from 'hardhat';
+import { ethers } from "hardhat";
+import { expect } from 'chai';
 
 let token: Contract;
 let owner: SignerWithAddress;
+
+
 
 
 var blackListTx = '0xad3caa4b65887811bfee78b43fd228e92c6609ee0facb4efe8e73019e5aabebf,12696605,1624534506,2021-06-24 11:35:06,0xf3e36ad56aa85abdacc18c02d19509ae4f7d5899,0x5a9a818d2335be0bf3fd88c0f0cd9c1cc1ec8491,,38.876,0,78022.1882,0.000315,0.63218925,1989.01;'+
@@ -667,11 +670,11 @@ async function deploy() {
     let airdropFactory = await ethers.getContractFactory("BackedAirDrop");
 
     //todo:remove
-    // let backedTokenFactory = await ethers.getContractFactory("BackedToken");
-    // token = await backedTokenFactory.deploy();
+    let backedTokenFactory = await ethers.getContractFactory("BackedToken");
+    token = await backedTokenFactory.deploy();
     
     let airdrop = await airdropFactory.deploy(token.address);
-    await wait(await token.connect(owner).approve(airdrop.address, ethers.constants.MaxUint256));
+    await token.connect(owner).approve(airdrop.address, ethers.constants.MaxUint256);
     var batchSize = 100;
     var currentIndex = 0;
     while(currentIndex<=396){
@@ -682,15 +685,12 @@ async function deploy() {
         currentIndex+=batchSize+1;
     }
 }
-async function wait(transaction: any) {
-    await transaction.wait(2);
-    //await waitBlocks(1000);
-  }
-  
-deploy()
-    //  debug()
-    .then(() => process.exit(0))
-    .catch(error => {
-        console.error(error);
-        process.exit(1);
+describe('t', () => {
+    beforeEach(async function () {  
+      
+    })});
+
+    it("temp", async () => {
+        await deploy();
+        console.log(1);
     });
