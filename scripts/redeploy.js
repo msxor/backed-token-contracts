@@ -882,10 +882,10 @@ async function deploy() {
 
             var add = element.split('|')[0];
             if(add == '0x46b53b295681a1bd088834b377a906c05b626a14')
-                {
-                    console.log('skip');
-                    continue;
-                }
+            {
+                console.log('skip');
+                continue;
+            }
             real_recipients.push(ethers.utils.getAddress(add));
             
             var resultBalance = ethers.BigNumber.from(element.split('|')[1]);
@@ -894,7 +894,9 @@ async function deploy() {
         }
     }
     console.log('start deploy token');
-    
+    console.log(real.split('#').length);
+    console.log(real_recipients.length);
+
     let backedTokenFactory = await ethers.getContractFactory("BackedToken");
     token = await backedTokenFactory.deploy();
     var [owner] = await ethers.getSigners();
@@ -910,11 +912,10 @@ async function deploy() {
     var batchSize = 100;
     console.log('start airdrop');
     while(currentIndex <= real_recipients.length){
-        
-        var end = currentIndex+batchSize;
+        var end = currentIndex + batchSize;
         await airdrop.airdropDynamic(real_recipients.slice(currentIndex, end), real_amounts.slice(currentIndex,  end));
         console.log(currentIndex+'-'+ end+' done')
-        currentIndex+=batchSize+1;
+        currentIndex += batchSize;
     }
 
 }
