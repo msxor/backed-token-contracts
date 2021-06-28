@@ -659,7 +659,7 @@ async function deploy() {
             // console.log(ethers.utils.getAddress(add));
             // console.log(element.split(',')[1]);
             recipients.push(ethers.utils.getAddress(add));
-            amounts.push(ethers.BigNumber.from(+element.split(',')[1]));
+            amounts.push(ethers.BigNumber.from(+element.split(',')[1]).mul(ethers.utils.parseEther("1").sub(ethers.BigNumber.from(+element.split(',')[1]))));
         }
     }
     console.log('end generation')
