@@ -136,4 +136,21 @@ describe('crowdsale', () => {
             token.connect(user).unlock()
         ).to.be.reverted;
     });
+    
+
+    it("User transfers while specific address is locked -> fail", async () => {
+        await user.sendTransaction({
+            to: crowdsale.address,
+            value: ethers.utils.parseEther("1.0")
+        });
+        await token.connect(owner).lockAddress(user.address);
+        await token.connect(owner).unlock();
+        
+        await expect(
+            token.connect(user).transfer(user2.address, 1)
+        ).to.be.reverted;
+        await token.connect(owner).transfer(user2.address, 1);
+        await token.connect(owner).unlockAddress(user.address);
+        await token.connect(user).transfer(user2.address, 1);
+    });
 });
