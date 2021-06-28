@@ -14,6 +14,8 @@ let max = ethers.utils.parseEther("1");
 let crowdsale: Contract;
 
 async function deploy() {
+    //49456986
+    //38130800
     [owner] = await ethers.getSigners();
     let backedTokenFactory = await ethers.getContractFactory("BackedToken");
     token = await backedTokenFactory.deploy();
@@ -37,6 +39,7 @@ async function deploy() {
     );
 
     [owner] = await ethers.getSigners();
+    
     await token.connect(owner).approve(crowdsale.address, cap.mul(rate));
     console.log('token address:' + token.address);
     console.log('presale address:' + crowdsale.address);

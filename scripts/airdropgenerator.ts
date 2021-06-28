@@ -632,7 +632,6 @@ async function deploy() {
     '0xfe7d6982c0191e81d6f87048b86c92de7aec19f0,27800,No'+
     '0xff163f09406f3133af9e6b552182048a9d50b6c7,69500,No'+
     '0xff6316eaf217c717b6e7a4dba31b3e847ea0361e,13900,No';
-   // console.log(blackListTx.split(';')[10].split(',')[4]);
     console.log('start generate!!!!')
     var recipients = [];
     var amounts = [];
@@ -649,8 +648,6 @@ async function deploy() {
                 if(add == blackAddress){
                     blackListed = true;
                 }
-              
-
             }
             
             if(blackListed || add == '0x46b53b295681a1bd088834b377a906c05b626a14')
