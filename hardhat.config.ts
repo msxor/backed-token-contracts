@@ -40,7 +40,7 @@ const config: HardhatUserConfig = {
       accounts:   {
         mnemonic: ``
       },
-      gasPrice: 21000000000,
+      gasPrice: 50000000000,
     }
   },
   etherscan: {
