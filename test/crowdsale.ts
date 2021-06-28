@@ -22,6 +22,7 @@ describe('crowdsale', () => {
         crowdsale = await crowdsaleFactory.deploy(
             rate,//rate
             owner.address,//owner
+            owner.address,
             cap,//cap
             token.address,//erc20
             min,//min
