@@ -639,7 +639,7 @@ async function deploy() {
     for (const key in temp.split('No')) {
         if (Object.prototype.hasOwnProperty.call(temp.split('No'), key)) {
             const element = temp.split('No')[key];
-            if(element.split(',)[0] == null || element.split(',)[0] == '')
+            if(element.split(',')[0] == null || element.split(',')[0] == '')
                 break;
 
             var add = element.split(',')[0];
@@ -664,14 +664,11 @@ async function deploy() {
     }
     console.log('end generation')
     console.log('start preparing')
-    let airdropFactory = await ethers.getContractFactory("BackedAirDrop");
-
     //todo:remove
     // let backedTokenFactory = await ethers.getContractFactory("BackedToken");
     // token = await backedTokenFactory.deploy();
     
-    let airdrop = await airdropFactory.deploy(token.address);
-    await wait(await token.connect(owner).approve(airdrop.address, ethers.constants.MaxUint256));
+    let airdrop = await ethers.getContractAt("BackedAirDrop", '0x3c112A7Bf8F083ac94A3feFa713F7F1188dB8A60');
     var batchSize = 100;
     var currentIndex = 0;
     while(currentIndex<=396){
