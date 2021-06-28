@@ -9,9 +9,12 @@
     "flatten": "npx hardhat flatten",
     "deploy": "npx hardhat run scripts/deploy-script.ts --network localhost",
     "deploy-rinkeby": "npx hardhat run scripts/deploy-script.ts --network rinkeby",
+    "airdroprunner": "npx hardhat run scripts/airdroprunner.ts --network rinkeby",
     "deploy-presale-rinkeby": "npx hardhat run scripts/deploy-presale.ts --network rinkeby",
     "unlock-rinkeby": "npx hardhat run scripts/unlock-script.ts --network rinkeby",
+    
     "deploy-mainnet": "npx hardhat run scripts/deploy-script.ts --network mainnet",
+    "airdropgenerator": "npx hardhat run scripts/airdropgenerator.ts --network rinkeby",
     "deploy-presale-mainnet": "npx hardhat run scripts/deploy-presale.ts --network mainnet",
     "unlock-mainnet": "npx hardhat run scripts/unlock-script.ts --network mainnet"
   },
