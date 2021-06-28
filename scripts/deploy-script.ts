@@ -17,7 +17,13 @@ async function deploy() {
     [owner] = await ethers.getSigners();
     let backedTokenFactory = await ethers.getContractFactory("BackedToken");
     token = await backedTokenFactory.deploy();
-    
+    console.log(rate,//rate
+        owner.address,//owner
+        '0x5e930d9025B57BA34f4cEA7De73BD54261E9ec2A',
+        cap,//cap
+        token.address,//erc20
+        min,//min
+        max);//max);
     [owner] = await ethers.getSigners();
     let crowdsaleFactory = await ethers.getContractFactory("BackedCrowdsale");
     crowdsale = await crowdsaleFactory.deploy(
